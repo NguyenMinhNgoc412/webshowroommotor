@@ -1,0 +1,82 @@
+ body {
+    font-family: Arial;
+    background: #f5f5f5;
+    padding: 20px;
+}
+
+h2 {
+    text-align: center;
+    color: #e53935;
+    margin-bottom: 20px;
+}
+
+/* GRID 3 CỘT */
+.board {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+/* CỘT */
+.column {
+    background: #fff;
+    border-radius: 10px;
+    padding: 15px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.column h3 {
+    text-align: center;
+    margin-bottom: 15px;
+    padding: 10px;
+    color: #fff;
+    border-radius: 6px;
+}
+
+.col-new h3 { background: #e53935; }
+.col-contacted h3 { background: #fb8c00; }
+.col-done h3 { background: #43a047; }
+
+/* CARD */
+.card {
+    background: #fafafa;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.card b {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.card small {
+    color: #666;
+}
+
+.card button {
+    margin-top: 8px;
+    padding: 5px 8px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.btn-next {
+    background: #1976d2;
+    color: #fff;
+}
+.btn-done {
+    background: #2e7d32;
+    color: #fff;
+}
+
+/* ADMIN – CHẶN OVERLAY USER */
+#overlay,
+#buyOverlay,
+#productModal,
+#buyModal {
+    display: none !important;
+    pointer-events: none !important;
+}
