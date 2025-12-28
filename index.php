@@ -120,9 +120,11 @@ $categories = mysqli_query($conn, "SELECT * FROM categories");
     </ul>
 </nav>
 <section class="banner-slider">
-    <div class="slide active" style="background-image:url('assets/images/banner1.jpg')"></div>
-    <div class="slide" style="background-image:url('assets/images/banner2.jpg')"></div>
+    <div class="slide active" style="background-image:url('assets/images/banner4.jpg')"></div>
+    <div class="slide" style="background-image:url('assets/images/banner8.jpg')"></div>
     <div class="slide" style="background-image:url('assets/images/banner3.jpg')"></div>
+    <div class="slide" style="background-image:url('assets/images/banner9.png')"></div>
+    <div class="slide" style="background-image:url('assets/images/banner10.jpg')"></div>
 </section>
 
     <section class="products">

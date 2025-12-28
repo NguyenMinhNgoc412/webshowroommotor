@@ -1,82 +1,119 @@
- body {
-    font-family: Arial;
-    background: #f5f5f5;
+/* ===== RESET & BASE ===== */
+body {
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: #eef2f7;
     padding: 20px;
+    color: #1f2937;
 }
 
 h2 {
     text-align: center;
-    color: #e53935;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
 }
 
-/* GRID 3 CỘT */
+/* ===== BOARD ===== */
 .board {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
+    gap: 24px;
 }
 
-/* CỘT */
+/* ===== COLUMN ===== */
 .column {
-    background: #fff;
-    border-radius: 10px;
-    padding: 15px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 16px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.08);
 }
 
 .column h3 {
     text-align: center;
-    margin-bottom: 15px;
-    padding: 10px;
+    margin-bottom: 16px;
+    padding: 12px;
     color: #fff;
-    border-radius: 6px;
+    border-radius: 8px;
+    font-size: 15px;
+    letter-spacing: 0.5px;
 }
 
-.col-new h3 { background: #e53935; }
-.col-contacted h3 { background: #fb8c00; }
-.col-done h3 { background: #43a047; }
+/* MÀU TRẠNG THÁI */
+.col-new h3 {
+    background: linear-gradient(135deg, #ef4444, #dc2626);
+}
+.col-contacted h3 {
+    background: linear-gradient(135deg, #f59e0b, #d97706);
+}
+.col-done h3 {
+    background: linear-gradient(135deg, #22c55e, #16a34a);
+}
 
-/* CARD */
+/* ===== CARD ===== */
 .card {
-    background: #fafafa;
-    border: 1px solid #ddd;
-    border-radius: 6px;
-    padding: 10px;
-    margin-bottom: 10px;
+    background: #f9fafb;
+    border-radius: 10px;
+    padding: 12px 14px;
+    margin-bottom: 14px;
+    border-left: 5px solid transparent;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    transition: all 0.25s ease;
 }
 
+.col-new .card { border-left-color: #ef4444; }
+.col-contacted .card { border-left-color: #f59e0b; }
+.col-done .card { border-left-color: #22c55e; }
+
+.card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 24px rgba(0,0,0,0.12);
+}
+
+/* TEXT */
 .card b {
-    display: block;
-    margin-bottom: 5px;
+    font-size: 14px;
+    margin-bottom: 4px;
 }
 
 .card small {
-    color: #666;
+    display: block;
+    margin-top: 6px;
+    color: #6b7280;
+    font-size: 12px;
 }
 
+/* ===== BUTTON ===== */
 .card button {
-    margin-top: 8px;
-    padding: 5px 8px;
+    margin-top: 10px;
+    padding: 7px 12px;
     border: none;
-    border-radius: 4px;
+    border-radius: 6px;
     cursor: pointer;
+    font-size: 13px;
+    font-weight: 600;
+    transition: 0.2s;
 }
 
+/* BUTTON STATE */
 .btn-next {
-    background: #1976d2;
+    background: #2563eb;
     color: #fff;
 }
-.btn-done {
-    background: #2e7d32;
-    color: #fff;
+.btn-next:hover {
+    background: #1e40af;
 }
 
-/* ADMIN – CHẶN OVERLAY USER */
-#overlay,
-#buyOverlay,
-#productModal,
-#buyModal {
-    display: none !important;
-    pointer-events: none !important;
+.btn-done {
+    background: #16a34a;
+    color: #fff;
+}
+.btn-done:hover {
+    background: #166534;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 1100px) {
+    .board {
+        grid-template-columns: 1fr;
+    }
 }

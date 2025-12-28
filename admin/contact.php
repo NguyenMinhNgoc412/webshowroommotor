@@ -48,10 +48,10 @@ while ($row = $result->fetch_assoc()) {
 <?php foreach ($orders[0] as $o): ?>
     <div class="card">
         <b><?= htmlspecialchars($o['customer_name']) ?></b>
-        📱 <?= htmlspecialchars($o['phone']) ?><br>
-        🚗 <?= htmlspecialchars($o['product_name']) ?><br>
-        🏠 <?= htmlspecialchars($o['address']) ?><br>
-        📝 <?= nl2br(htmlspecialchars($o['note'])) ?><br>
+        <?= htmlspecialchars($o['phone']) ?><br>
+         <?= htmlspecialchars($o['product_name']) ?><br>
+         <?= htmlspecialchars($o['address']) ?><br>
+        <?= nl2br(htmlspecialchars($o['note'])) ?><br>
         <small><?= $o['created_at'] ?></small>
 
         <button class="btn-next"
@@ -72,10 +72,10 @@ while ($row = $result->fetch_assoc()) {
 <?php foreach ($orders[1] as $o): ?>
     <div class="card">
         <b><?= htmlspecialchars($o['customer_name']) ?></b>
-        📱 <?= htmlspecialchars($o['phone']) ?><br>
-        🚗 <?= htmlspecialchars($o['product_name']) ?><br>
-        🏠 <?= htmlspecialchars($o['address']) ?><br>
-        📝 <?= nl2br(htmlspecialchars($o['note'])) ?><br>
+        <b>SĐT</b><?= htmlspecialchars($o['phone']) ?><br>
+        <b>Sản phẩm</b><?= htmlspecialchars($o['product_name']) ?><br>
+        <b>Địa chỉ</b><?= htmlspecialchars($o['address']) ?><br>
+        <b>Ghi chú</b><?= nl2br(htmlspecialchars($o['note'])) ?><br>
         <small><?= $o['created_at'] ?></small>
 
         <button class="btn-next"
@@ -92,10 +92,10 @@ while ($row = $result->fetch_assoc()) {
 <?php foreach ($orders[2] as $o): ?>
     <div class="card">
         <b><?= htmlspecialchars($o['customer_name']) ?></b>
-        📱 <?= htmlspecialchars($o['phone']) ?><br>
-        🚗 <?= htmlspecialchars($o['product_name']) ?><br>
-        🏠 <?= htmlspecialchars($o['address']) ?><br>
-        📝 <?= nl2br(htmlspecialchars($o['note'])) ?><br>
+        <b>SĐT</b><?= htmlspecialchars($o['phone']) ?><br>
+        <b>Sản phẩm</b><?= htmlspecialchars($o['product_name']) ?><br>
+        <b>Địa chỉ</b><?= htmlspecialchars($o['address']) ?><br>
+        <b>Ghi chú</b><?= nl2br(htmlspecialchars($o['note'])) ?><br>
         <small><?= $o['created_at'] ?></small>
 
         <button class="btn-next btn-done"

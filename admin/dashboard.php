@@ -2,49 +2,144 @@
 require_once 'includes/auth.php';
 require_once '../config/database.php';
 include 'includes/header.php';
-
-$current_page = basename($_SERVER['PHP_SELF']);
-
-$totalProducts   = mysqli_fetch_row(mysqli_query($conn, "SELECT COUNT(*) FROM products"))[0] ?? 0;
-$totalBrands     = mysqli_fetch_row(mysqli_query($conn, "SELECT COUNT(*) FROM brands"))[0] ?? 0;
-$totalCategories = mysqli_fetch_row(mysqli_query($conn, "SELECT COUNT(*) FROM categories"))[0] ?? 0;
 ?>
+
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <link rel="stylesheet" href="../assets/css/admin.css">
+<meta charset="UTF-8">
+<title>Dashboard</title>
+
+<link rel="stylesheet" href="../assets/css/admin.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<style>
+.dashboard-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:20px;
+    margin-bottom:30px
+}
+.card{
+    background:#fff;
+    padding:20px;
+    border-radius:12px;
+    box-shadow:0 4px 12px rgba(0,0,0,.08)
+}
+.card h4{color:#64748b;font-size:14px}
+.card h2{margin-top:8px;color:#0f172a}
+.charts{
+    display:grid;
+    grid-template-columns:2fr 1fr;
+    gap:20px
+}
+.progress{
+    height:8px;
+    background:#e5e7eb;
+    border-radius:4px;
+    overflow:hidden
+}
+.progress-bar{
+    height:100%;
+    background:#22c55e
+}
+</style>
 </head>
+
 <body class="dashboard-body">
+<div class="admin-wrapper">
+<main class="main-content">
 
-<div class="admin-wrapper">  
-    <main class="main-content">
-        <section class="stats">
-            <div class="stat-box">
-                <p>Tổng sản phẩm</p>
-                <h3><?php echo number_format($totalProducts); ?></h3>
-            </div>
-            <div class="stat-box">
-                <p>Hãng xe đối tác</p>
-                <h3><?php echo $totalBrands; ?></h3>
-            </div>
-            <div class="stat-box">
-                <p>Danh mục xe</p>
-                <h3><?php echo $totalCategories; ?></h3>
-            </div>
-        </section>
+<h2>📊 Tổng quan hệ thống</h2>
 
-        <section class="welcome-box">
-            <h2>Xin chào quay trở lại!</h2>
-            <p>Hệ thống đang hoạt động ổn định. Bạn có thể quản lý danh sách xe máy, cập nhật thông tin hãng xe hoặc phản hồi liên hệ của khách hàng ngay bên dưới.</p>
-            <a href="products.php" class="btn">Quản lý xe ngay <i class="fa-solid fa-arrow-right" style="margin-left: 8px;"></i></a>
-        </section>
+<!-- ===== KPI ===== -->
+<div class="dashboard-grid" id="kpi-area"></div>
 
-    </main>
+<!-- ===== BIỂU ĐỒ ===== -->
+<div class="charts">
+    <div class="card">
+        <h4>Doanh thu 7 ngày gần nhất</h4>
+        <canvas id="revenueChart"></canvas>
+    </div>
+
+    <div class="card">
+        <h4>Sản phẩm bán chạy</h4>
+        <canvas id="topProductChart"></canvas>
+    </div>
 </div>
+
+</main>
+</div>
+
+<script>
+let revenueChart, productChart;
+
+function loadDashboard(){
+    fetch('dashboard_data.php')
+    .then(res=>res.json())
+    .then(data=>{
+        renderKPI(data);
+        renderRevenueChart(data);
+        renderProductChart(data);
+    });
+}
+
+function renderKPI(d){
+    document.getElementById('kpi-area').innerHTML = `
+        <div class="card">
+            <h4>Doanh thu</h4>
+            <h2>${d.revenue.toLocaleString()} đ</h2>
+        </div>
+        <div class="card">
+            <h4>Lợi nhuận</h4>
+            <h2 style="color:#22c55e">${d.profit.toLocaleString()} đ</h2>
+        </div>
+        <div class="card">
+            <h4>Giá trị đơn TB</h4>
+            <h2>${d.avg_order.toLocaleString()} đ</h2>
+        </div>
+        <div class="card">
+            <h4>Bán chạy nhất</h4>
+            <h2>${d.top_product}</h2>
+            <div class="progress">
+                <div class="progress-bar" style="width:${d.top_percent}%"></div>
+            </div>
+        </div>
+    `;
+}
+
+function renderRevenueChart(d){
+    if(revenueChart) revenueChart.destroy();
+    revenueChart = new Chart(document.getElementById('revenueChart'),{
+        type:'line',
+        data:{
+            labels:d.revenue_days,
+            datasets:[{
+                label:'Doanh thu',
+                data:d.revenue_values,
+                fill:true,
+                borderWidth:2
+            }]
+        }
+    });
+}
+
+function renderProductChart(d){
+    if(productChart) productChart.destroy();
+    productChart = new Chart(document.getElementById('topProductChart'),{
+        type:'pie',
+        data:{
+            labels:d.product_labels,
+            datasets:[{
+                data:d.product_values
+            }]
+        }
+    });
+}
+
+loadDashboard();
+setInterval(loadDashboard,5000); 
+</script>
 
 </body>
 </html>

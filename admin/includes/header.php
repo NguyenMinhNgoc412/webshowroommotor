@@ -24,10 +24,20 @@
                 </a>
             </li>
             <li>
+                <a href="inventory.php" class="<?= $current_page == 'inventory.php' ? 'active' : '' ?>">
+                    <i class="fa-solid fa-boxes-stacked"></i> <span>Kho</span>
+                </a>
+            </li>
+            <li>
+                <a href="invoices.php" class="<?= $current_page == 'invoices.php' ? 'active' : '' ?>">
+                    <i class="fa-solid fa-file-invoice"></i> <span>Hoá đơn</span>
+                </a>
+            </li>
+            <li>
                 <a href="contact.php" class="<?= $current_page == 'contact.php' ? 'active' : '' ?>">
                     <i class="fa-solid fa-envelope"></i> <span>Liên hệ</span>
                 </a>
-            </li>
+            </li>     
             <li style="margin-top: auto; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 10px;">
                 <a href="logout.php" style="color: #ffb3b3;">
                     <i class="fa-solid fa-right-from-bracket"></i> <span>Đăng xuất</span>                   
@@ -40,7 +50,7 @@
             <h1>Tổng quan hệ thống</h1>
             <div class="admin-user">
                 <i class="fa-solid fa-circle-user"></i>
-                Xin chào, <strong><?php echo $_SESSION['admin']['username']; ?></strong>
+                Xin chào
             </div>
         </header>
 </body>
