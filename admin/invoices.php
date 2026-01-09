@@ -18,7 +18,7 @@ $result = $conn->query($sql);
     <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #4361ee;
+            --primary: #d62839;
             --bg: #f8f9fa;
             --text: #2b2d42;
         }
@@ -27,7 +27,7 @@ $result = $conn->query($sql);
         .container { max-width: 1100px; margin: auto; }
         
         .header-flex { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
-        .btn { padding: 10px 20px; border-radius: 8px; text-decoration: none; font-weight: 500; transition: 0.3s; display: inline-flex; align-items: center; }
+        .btn { padding: 10px 20px; border-radius: 8px; text-decoration: none; font-weight: 600; transition: 0.3s; display: inline-flex; align-items: center; }
         .btn-primary { background: var(--primary); color: white; }
 
         /* Bảng Card */
@@ -55,7 +55,9 @@ $result = $conn->query($sql);
     <div class="header-flex">
         <h1>📑 Quản lý Hoá Đơn</h1>
         <div class="btn-group">
-            <a href="invoice_create.php" class="btn btn-primary">+ Tạo hoá đơn mới</a>
+            <a href="invoice_create.php" class="btn btn-primary">
+                <i class="fa-solid fa-plus"></i> Tạo hoá đơn mới
+            </a>
         </div>
     </div>
     
@@ -79,7 +81,7 @@ $result = $conn->query($sql);
                             <strong><?= htmlspecialchars($row['full_name']) ?></strong><br>
                             <small style="color:#999"><?= htmlspecialchars($row['phone']) ?></small>
                         </td>
-                        <td><strong><?= number_format($row['total_amount']) ?> đ</strong></td>
+                        <td><strong><?= number_format($row['total_amount']) ?> vnđ</strong></td>
                         <td><?= date('d/m/Y H:i', strtotime($row['created_at'])) ?></td>
                         <td>
                             <span class="badge <?= $row['status'] ?>">

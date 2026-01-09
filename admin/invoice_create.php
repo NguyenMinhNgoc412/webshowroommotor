@@ -97,9 +97,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <form method="POST">
         <div class="row-grid">
             <input type="text" name="full_name" placeholder="Tên khách hàng" required>
-            <input type="text" name="cccd" placeholder="Số CCCD" required>
-            <input type="text" name="phone" placeholder="Số điện thoại">
-            <input type="text" name="address" placeholder="Địa chỉ">
+            <input type="text" name="cccd" placeholder="Số CCCD" required minlength="12" maxlength="12">
+            <input type="text" name="phone" placeholder="Số điện thoại" required minlength="10" maxlength="10">
+            <input type="text" name="address" placeholder="Địa chỉ" required>
         </div>
 
         <hr>

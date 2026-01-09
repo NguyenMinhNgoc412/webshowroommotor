@@ -53,6 +53,8 @@ $result = mysqli_query($conn, $sql);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>99 Motorbike Showroom</title>
     <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
 </head>
 <body>
     <header class="header">
@@ -249,9 +251,24 @@ $categories = mysqli_query($conn, "SELECT * FROM categories");
         <div class="footer-box">
             <h3>KẾT NỐI VỚI CHÚNG TÔI</h3>
             <ul class="social-links">
-                <li><a href="https://www.facebook.com/profile.php?id=61585479210060" target="_blank">📘 Facebook</a></li>
-                <li><a href="#" target="_blank">📸 Instagram</a></li>
-                <li><a href="#" target="_blank">💬 Zalo OA</a></li>
+                <li>
+                    <a href="https://www.facebook.com/profile.php?id=61585479210060" target="_blank">
+                        <i class="fa-brands fa-facebook"></i> Facebook
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#" target="_blank">
+                        <i class="fa-brands fa-instagram"></i> Instagram
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#" target="_blank">
+                        <i class="fa-brands fa-zalo"></i> Zalo 
+                    </a>
+                </li>
+
             </ul>
         </div>
 
