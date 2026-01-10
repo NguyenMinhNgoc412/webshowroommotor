@@ -1,5 +1,5 @@
 <?php
-require_once 'config/database.php';
+require_once '../config/database.php';
 $where = "WHERE p.status = 1";
 
 if (!empty($_GET['keyword'])) {
@@ -52,14 +52,14 @@ $result = mysqli_query($conn, $sql);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>99 Motorbike Showroom</title>
-    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="../assets/css/styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 </head>
 <body>
     <header class="header">
     <div class="header-inner">
-        <img src="assets/images/logo.png" alt="99 Motorbike" class="logo">
+        <img src="../assets/images/logo.png" alt="99 Motorbike" class="logo">
         <div class="header-text">
             <h1>99 Motorbike Showroom</h1>
             <p>Uy tín - Chính hãng - Chất lượng</p>
@@ -122,11 +122,11 @@ $categories = mysqli_query($conn, "SELECT * FROM categories");
     </ul>
 </nav>
 <section class="banner-slider">
-    <div class="slide active" style="background-image:url('assets/images/banner4.jpg')"></div>
-    <div class="slide" style="background-image:url('assets/images/banner8.jpg')"></div>
-    <div class="slide" style="background-image:url('assets/images/banner3.jpg')"></div>
-    <div class="slide" style="background-image:url('assets/images/banner9.png')"></div>
-    <div class="slide" style="background-image:url('assets/images/banner10.jpg')"></div>
+    <div class="slide active" style="background-image:url('../assets/images/banner4.jpg')"></div>
+    <div class="slide" style="background-image:url('../assets/images/banner8.jpg')"></div>
+    <div class="slide" style="background-image:url('../assets/images/banner3.jpg')"></div>
+    <div class="slide" style="background-image:url('../assets/images/banner9.png')"></div>
+    <div class="slide" style="background-image:url('../assets/images/banner10.jpg')"></div>
 </section>
 
     <section class="products">
@@ -193,7 +193,7 @@ $categories = mysqli_query($conn, "SELECT * FROM categories");
         <?php if (mysqli_num_rows($result) > 0): ?>
             <?php while ($row = mysqli_fetch_assoc($result)): ?>
                 <div class="product-card">
-                    <img src="assets/uploads/<?php echo $row['image']; ?>" alt="<?php echo $row['name']; ?>">
+                    <img src="../assets/uploads/<?php echo $row['image']; ?>" alt="<?php echo $row['name']; ?>">
 
                     <h3><?php echo $row['name']; ?></h3>
 
@@ -208,7 +208,7 @@ $categories = mysqli_query($conn, "SELECT * FROM categories");
 
                     <button class="btn-detail"
                         data-name="<?= htmlspecialchars($row['name']) ?>"
-                        data-image="assets/uploads/<?= $row['image'] ?>"
+                        data-image="../assets/uploads/<?= $row['image'] ?>"
                         data-price="<?= number_format($row['price']) ?> ₫"
                         data-brand="<?= $row['brand_name'] ?>"
                         data-category="<?= $row['category_name'] ?>"
@@ -323,7 +323,7 @@ $categories = mysqli_query($conn, "SELECT * FROM categories");
         </div>
     </div>
 
-    <script src="assets/js/slider.js"></script>
+    <script src="../assets/js/slider.js"></script>
     <script>
     const overlay = document.getElementById('overlay');
     const modal = document.getElementById('productModal');
@@ -411,6 +411,113 @@ buyForm.addEventListener('submit', e => {
 });
 
 </script>
+            
+<!-- CHATBOT FLOAT -->
+<div id="chat-float-btn">
+    <img src="../assets/images/chatbot.png" alt="Chatbot">
+</div>
+
+<div id="chat-panel">
+    <div id="chat-panel-header">
+        🤖 Trợ lý tư vấn xe
+        <span id="chat-close">✖</span>
+    </div>
+
+    <div id="chat-panel-body"></div>
+
+    <div id="chat-panel-input">
+        <input id="chat-text" placeholder="Hỏi về xe, giá, hãng...">
+        <button id="chat-send">➤</button>
+    </div>
+</div>
+
+
+<script>
+const floatBtn = document.getElementById("chat-float-btn");
+const chatPanel = document.getElementById("chat-panel");
+const closeBtn = document.getElementById("chat-close");
+const sendBtn = document.getElementById("chat-send");
+const chatInput = document.getElementById("chat-text");
+
+floatBtn.onclick = () => chatPanel.classList.toggle("active");
+closeBtn.onclick = () => chatPanel.classList.remove("active");
+sendBtn.onclick = sendMessage;
+
+chatInput.addEventListener("keydown", function(e){
+    if(e.key === "Enter"){
+        e.preventDefault();
+        sendMessage();
+    }
+});
+document.addEventListener("keydown", function(e){
+    if(e.key === "Escape"){
+        chatPanel.classList.remove("active");
+    }
+});
+
+
+function sendMessage(){
+    let input = document.getElementById("chat-text");
+    let msg = input.value.trim();
+    if(!msg) return;
+
+    const messages = document.getElementById("chat-panel-body");
+
+    messages.innerHTML += `<div class="chat-user"><span>${msg}</span></div>`;
+    input.value="";
+    messages.scrollTop = messages.scrollHeight;
+
+    fetch("gemini_motor.php",{
+        method:"POST",
+        headers:{"Content-Type":"application/x-www-form-urlencoded"},
+        body:"message="+encodeURIComponent(msg)
+    })
+    .then(res => res.text())
+    .then(raw => {
+    console.log("RAW:", raw);
+
+    let data = JSON.parse(raw);
+
+    if(data.error){
+        throw new Error(data.error);
+    }
+
+    let reply = data.reply || "Không có phản hồi.";
+
+    // hiện tin nhắn bot
+    messages.innerHTML += `
+      <div class="chat-bot">
+        <span>${reply.replace(/\n/g,"<br>")}</span>
+      </div>
+    `;
+
+    // hiện danh sách xe (nếu có)
+    if(data.images && data.images.length > 0){
+        data.images.forEach(item=>{
+            messages.innerHTML += `
+                <div class="chat-bot">
+                    <div style="background:#fff;padding:8px;border-radius:10px;max-width:220px">
+                        <img src="${item.image}" style="width:100%;border-radius:8px">
+                        <b>${item.name}</b><br>
+                    </div>
+                </div>
+            `;
+        });
+    }
+
+    messages.scrollTop = messages.scrollHeight;
+})
+
+    .catch(err=>{
+        messages.innerHTML += `
+          <div class="chat-bot">
+            <span style="color:red">Lỗi: ${err.message}</span>
+          </div>`;
+    });
+}
+</script>
+
+
 
 
 

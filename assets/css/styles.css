@@ -507,3 +507,107 @@ li a {
     }
 }
 
+/* ===== CHATBOT FLOAT ===== */
+#chat-float-btn{
+    position: fixed;
+    right: 22px;
+    bottom: 22px;
+    width: 65px;
+    height: 65px;
+    background: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 8px 25px rgba(0,0,0,.35);
+    z-index: 999999;
+}
+
+#chat-float-btn img{
+    width: 60%;
+    height: 60%;
+    object-fit: contain;
+}
+
+#chat-panel{
+    position: fixed;
+    right: 22px;
+    bottom: 105px;
+    width: 340px;
+    height: 450px;
+    background: #fff;
+    border-radius: 14px;
+    box-shadow: 0 10px 30px rgba(0,0,0,.35);
+    display: none;
+    flex-direction: column;
+    overflow: hidden;
+    z-index: 999999;
+}
+
+#chat-panel.active{
+    display: flex;
+}
+
+#chat-panel-header{
+    background: #e53935;
+    color: #fff;
+    padding: 12px;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#chat-panel-body{
+    flex: 1;
+    padding: 10px;
+    overflow-y: auto;
+    background: #f5f5f5;
+}
+
+#chat-panel-input{
+    display: flex;
+    border-top: 1px solid #ddd;
+}
+
+#chat-panel-input input{
+    flex: 1;
+    border: none;
+    padding: 14px 12px;    
+    outline: none;
+    font-size: 16px;
+}
+
+#chat-panel-input button{
+    width: 52px;
+    border: none;
+    background: #e53935;
+    color: white;
+    cursor: pointer;
+    font-size: 18px;
+    transition: 0.2s;
+}
+
+#chat-panel-input button:hover{
+    background: #c62828;
+}
+#chat-panel-header span {
+    cursor: pointer;
+    font-size: 18px;
+    padding: 4px 10px;
+    border-radius: 50%;
+    transition: all 0.25s ease;
+}
+
+#chat-panel-header span:hover {
+    background: rgba(255,255,255,0.25);
+    transform: rotate(90deg) scale(1.1);
+}
+
+
+.chat-user{text-align:right;margin:6px 0;}
+.chat-user span{background:#e53935;color:#fff;padding:6px 10px;border-radius:12px;display:inline-block;}
+
+.chat-bot{text-align:left;margin:6px 0;}
+.chat-bot span{background:#e0e0e0;padding:6px 10px;border-radius:12px;display:inline-block;}
