@@ -1,5 +1,5 @@
 <?php
-include '../config/database.php';
+include '../../config/database.php';
 
 // 1. Lấy danh sách sản phẩm để chọn (Kèm theo tồn kho để hiển thị)
 $sql_products = "SELECT p.*, COALESCE(i.quantity, 0) as stock 
@@ -73,7 +73,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <title>Tạo Hoá Đơn Mới</title>
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <style>
-        body { font-family: 'Segoe UI', sans-serif; background: #f0f2f5; padding: 20px; }
+        body { font-family: Arial, sans-serif; background: #f0f2f5; padding: 20px; }
         .container { max-width: 900px; margin: auto; background: white; padding: 30px; border-radius: 12px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); }
         .row-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 20px; }
         input, select { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 6px; box-sizing: border-box; }
@@ -82,7 +82,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         td { padding: 10px; border-bottom: 1px solid #eee; }
         .btn { padding: 10px 20px; border: none; border-radius: 6px; cursor: pointer; font-weight: 600; }
         .btn-add { background: #4361ee; color: white; margin-bottom: 10px; }
-        .btn-save { background: #2ecc71; color: white; width: 100%; font-size: 1.1em; margin-top: 20px; }
+        .btn-save { background: #0a7e5d; color: white; width: 40%; font-size: 1.1em; margin-top: 20px;margin-left: auto; display: block; }
         #grand-total { font-size: 1.5em; font-weight: bold; color: #e74c3c; text-align: right; margin-top: 15px; }
     </style>
 </head>

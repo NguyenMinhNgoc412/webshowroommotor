@@ -1,5 +1,5 @@
 <?php
-include '../config/database.php';
+include '../../config/database.php';
 
 // 1. Lấy tham số lọc ngày (Mặc định từ đầu tháng đến hiện tại)
 $from_date = isset($_GET['from']) ? $_GET['from'] : date('Y-m-01');

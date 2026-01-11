@@ -1,7 +1,7 @@
 <?php
-include '../config/database.php'; 
-include 'includes/header.php'; 
-include 'includes/auth.php';   
+include '../../config/database.php'; 
+include '../includes/header.php'; 
+include '../includes/auth.php';   
 
 /** * 1. XỬ LÝ NHẬP KHO 
  */
@@ -50,7 +50,7 @@ $result = $conn->query($sql_select);
     <meta charset="UTF-8">
     <title>Quản Lý Kho</title>
     <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; padding: 20px; background-color: #f4f7f6; }
+        body { font-family: Arial, sans-serif; padding: 20px; background-color: #f4f7f6; }
         h1 { color: #333; }
         .nav-links { margin-bottom: 20px; }
         .nav-links a { text-decoration: none; color: #007bff; font-weight: bold; margin-right: 15px; }
@@ -72,7 +72,7 @@ $result = $conn->query($sql_select);
     
     <div class="nav-links">
         <a href="stock_history.php">📜 Xem Lịch Sử Nhập/Xuất</a>
-        <a href="invoices.php">📄 Quản Lý Hoá Đơn</a>
+        <a href="../invoices.php">📄 Quản Lý Hoá Đơn</a>
     </div>
 
     <table>

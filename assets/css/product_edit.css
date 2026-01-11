@@ -1,4 +1,10 @@
-/* Kế thừa phong cách từ form chung */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
 .product-edit-wrapper {
     padding: 20px;
     background: #f8fafc;
@@ -126,6 +132,9 @@
 }
 
 .btn-cancel {
-    background: #f1f5f9;
-    color: #475569;
+    background: #e63946;
+    color: #fff;
+}
+.btn-cancel:hover {
+    background: #d62828;
 }

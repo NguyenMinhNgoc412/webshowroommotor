@@ -1,5 +1,5 @@
 <?php
-include '../config/database.php';
+include '../../config/database.php';
 
 /* ================= KIỂM TRA ID ================= */
 if (!isset($_GET['id']) || empty($_GET['id'])) {
@@ -7,7 +7,7 @@ if (!isset($_GET['id']) || empty($_GET['id'])) {
 }
 $id = (int)$_GET['id'];
 
-/* ================= LẤY HOÁ ĐƠN ================= */
+/* ================= LẤY HOÁ ĐƠN ================= */   
 $sql_inv = "
     SELECT i.*, 
            c.full_name AS customer_name, 
@@ -276,14 +276,14 @@ th{
 </div>
 
 <div class="no-print" style="text-align:center;margin-top:20px">
-    <button class="btn btn-print" onclick="window.print()">🖨 In hoá đơn</button>
+    <button class="btn btn-print" onclick="window.print()">In hoá đơn</button>
 
     <?php if ($inv['status'] === 'pending'): ?>
         <form method="post" style="display:inline">
             <input type="hidden" name="action" value="pay">
             <button class="btn btn-pay"
-                onclick="return confirm('Xác nhận thanh toán và trừ kho?')">
-                ✅ Xác nhận thanh toán
+                onclick="return confirm('Xác nhận thanh toán ?')">
+                Xác nhận thanh toán
             </button>
         </form>
 
@@ -291,7 +291,7 @@ th{
             <input type="hidden" name="action" value="cancel">
             <button class="btn btn-cancel"
                 onclick="return confirm('Huỷ hoá đơn này?')">
-                ❌ Huỷ hoá đơn
+                Huỷ hoá đơn
             </button>
         </form>
     <?php endif; ?>

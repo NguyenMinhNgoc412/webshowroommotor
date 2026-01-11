@@ -4,7 +4,7 @@ ini_set('display_errors', 0);
 
 header('Content-Type: application/json; charset=utf-8');
 
-require_once '../config/database.php';
+require_once '../../config/database.php';
 
 $product_id     = intval($_POST['product_id'] ?? 0);
 $customer_name  = trim($_POST['customer_name'] ?? '');

@@ -1,6 +1,6 @@
 <?php
-require 'includes/auth.php';
-require '../config/database.php';
+require '../includes/auth.php';
+require '../../config/database.php';
 
 $id = (int)$_GET['id'];
 
@@ -50,7 +50,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sửa sản phẩm</title>
-    <link rel="stylesheet" href="../assets/css/product_edit.css">
+    <link rel="stylesheet" href="../../assets/css/product_edit.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 </head>
 <body>
@@ -98,7 +98,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <label>Thay đổi hình ảnh (Để trống nếu giữ nguyên)</label>
                     <?php if ($product['image']): ?>
                         <div class="current-image-preview">
-                            <img src="../assets/uploads/<?= $product['image'] ?>" alt="Ảnh hiện tại">
+                            <img src="../../assets/uploads/<?= $product['image'] ?>" alt="Ảnh hiện tại">
                             <span>Ảnh hiện tại</span>
                         </div>
                     <?php endif; ?>

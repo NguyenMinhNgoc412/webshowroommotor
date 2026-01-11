@@ -1,7 +1,7 @@
 <?php
-require 'includes/auth.php';
-require '../config/database.php';
-include 'includes/header.php';
+require '../includes/auth.php';
+require '../../config/database.php';
+include '../includes/header.php';
 
 $sql = "
 SELECT o.*, p.name AS product_name

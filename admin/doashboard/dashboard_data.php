@@ -1,5 +1,5 @@
 <?php
-require_once '../config/database.php';
+require_once '../../config/database.php';
 
 /* DOANH THU */
 $revenue = mysqli_fetch_row(mysqli_query($conn,"

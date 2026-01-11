@@ -1,7 +1,7 @@
 <?php
-require 'includes/auth.php';
-require '../config/database.php';
-include 'includes/header.php';
+require '../includes/auth.php';
+require '../../config/database.php';
+include '../includes/header.php';
 
 $sql = "
     SELECT p.*, b.name AS brand_name, c.name AS category_name
@@ -18,12 +18,12 @@ $result = $conn->query($sql);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sản phẩm</title>
-    <link rel="stylesheet" href="assets/css/product.css">
+    <link rel="stylesheet" href="../../assets/css/product.css">
 </head>
 <body>
     <div class="product-page-wrapper">
     <div class="product-header">
-        <h2>Quản lý xe máy</h2>
+        <h2>🏍️ Quản lý Sản Phẩm</h2>
         <a href="product_add.php" class="btn-primary-custom">
             <i class="fa-solid fa-plus"></i> Thêm xe mới
         </a>
@@ -45,7 +45,7 @@ $result = $conn->query($sql);
                 <tr>
                     <td>
                         <div class="product-info">
-                            <img src="../assets/uploads/<?= $row['image'] ?>" class="product-thumb" alt="xe">
+                            <img src="../../assets/uploads/<?= $row['image'] ?>" class="product-thumb" alt="xe">
                             <div class="product-name-wrapper">
                                 <strong><?= htmlspecialchars($row['name']) ?></strong>
                             </div>

@@ -1,3 +1,9 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
 .product-add-wrapper {
     padding: 20px;
     background: #f8fafc;
@@ -97,12 +103,12 @@
 }
 
 .btn-save {
-    background: #e63946;
+    background: #065f46;
     color: #fff;
 }
 
 .btn-save:hover {
-    background: #d62839;
+    background: #054130;
     transform: translateY(-2px);
     box-shadow: 0 5px 15px rgba(230, 57, 70, 0.3);
 }

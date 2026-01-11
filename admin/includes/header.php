@@ -14,27 +14,32 @@
         <h2>SHOWROOM<span>99</span></h2>
         <ul>
             <li>
-                <a href="dashboard.php" class="<?= $current_page == 'dashboard.php' ? 'active' : '' ?>">
+                <a href="../doashboard/dashboard.php" class="<?= $current_page == 'dashboard.php' ? 'active' : '' ?>">
                     <i class="fa-solid fa-house"></i> <span>Dashboard</span>
                 </a>
             </li>
             <li>
-                <a href="products.php" class="<?= $current_page == 'products.php' ? 'active' : '' ?>">
+                <a href="../product/products.php" class="<?= $current_page == 'products.php' ? 'active' : '' ?>">
                     <i class="fa-solid fa-motorcycle"></i> <span>Sản phẩm</span>
                 </a>
             </li>
             <li>
-                <a href="inventory.php" class="<?= $current_page == 'inventory.php' ? 'active' : '' ?>">
+                <a href="../inventory/inventory.php" class="<?= $current_page == 'inventory.php' ? 'active' : '' ?>">
                     <i class="fa-solid fa-boxes-stacked"></i> <span>Kho</span>
                 </a>
             </li>
             <li>
-                <a href="invoices.php" class="<?= $current_page == 'invoices.php' ? 'active' : '' ?>">
+                <a href="../invoice/invoices.php" class="<?= $current_page == 'invoices.php' ? 'active' : '' ?>">
                     <i class="fa-solid fa-file-invoice"></i> <span>Hoá đơn</span>
                 </a>
             </li>
             <li>
-                <a href="contact.php" class="<?= $current_page == 'contact.php' ? 'active' : '' ?>">
+                <a href="../employee/employees.php" class="<?= $current_page == 'employees.php' ? 'active' : '' ?>">
+                    <i class="fa-solid fa-users"></i> <span>Nhân viên</span>
+                </a>
+            </li>
+            <li>
+                <a href="../contact/contact.php" class="<?= $current_page == 'contact.php' ? 'active' : '' ?>">
                     <i class="fa-solid fa-envelope"></i> <span>Liên hệ</span>
                 </a>
             </li>     

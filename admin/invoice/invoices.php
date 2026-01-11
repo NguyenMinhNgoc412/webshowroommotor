@@ -1,7 +1,8 @@
 <?php
-include '../config/database.php';
-include 'includes/header.php';
-include 'includes/auth.php';
+include '../../config/database.php';
+include '../includes/header.php';
+include '../includes/auth.php';
+
 
 // SQL lấy thông tin từ bảng invoices kết hợp bảng customers
 $sql = "SELECT i.*, c.full_name, c.phone 
@@ -23,7 +24,7 @@ $result = $conn->query($sql);
             --text: #2b2d42;
         }
 
-        body { font-family: 'Be Vietnam Pro', sans-serif; background-color: var(--bg); color: var(--text); padding: 20px; }
+        body { font-family: Arial, sans-serif; background-color: var(--bg); color: var(--text); padding: 20px; }
         .container { max-width: 1100px; margin: auto; }
         
         .header-flex { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
@@ -61,7 +62,7 @@ $result = $conn->query($sql);
         </div>
     </div>
     
-    <div class="card">
+        
         <table>
             <thead>
                 <tr>
