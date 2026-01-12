@@ -8,7 +8,7 @@ include '../includes/auth.php';
 $sql = "SELECT i.*, c.full_name, c.phone 
         FROM invoices i 
         JOIN customers c ON i.customer_id = c.id 
-        ORDER BY i.id DESC";
+        ORDER BY i.created_at DESC";
 $result = $conn->query($sql);
 ?>
 <!DOCTYPE html>
@@ -32,8 +32,7 @@ $result = $conn->query($sql);
         .btn-primary { background: var(--primary); color: white; }
 
         /* Bảng Card */
-        .card { background: white; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.05); overflow: hidden; }
-        table { width: 100%; border-collapse: collapse; }
+        table { width: 100%; border-collapse: collapse;margin-top:20px }
         th { background: #fdfdfd; color: #888; font-size: 12px; text-transform: uppercase; padding: 15px 20px; border-bottom: 1px solid #eee; text-align: left; }
         td { padding: 18px 20px; border-bottom: 1px solid #f6f6f6; font-size: 14px; }
 
@@ -61,8 +60,9 @@ $result = $conn->query($sql);
             </a>
         </div>
     </div>
-    
-        
+    <input type="text" id="keyword" placeholder="Tìm theo mã HĐ,tên khách hàng,trạng thái..."
+       style="padding:10px;width:300px;border-radius:8px;border:1px solid #ddd;">
+       <div id="invoiceTable"> 
         <table>
             <thead>
                 <tr>
@@ -98,13 +98,28 @@ $result = $conn->query($sql);
 </div>
 
 <script>
-document.addEventListener("DOMContentLoaded", () => {
-    const rows = document.querySelectorAll(".clickable-row");
-    rows.forEach(row => {
-        row.addEventListener("click", () => {
-            // Chuyển hướng đến link được lưu trong data-href
-            window.location.href = row.dataset.href;
-        });
+document.addEventListener("click", function(e) {
+    if (e.target.closest("a")) return;
+
+    const row = e.target.closest(".clickable-row");
+    if (row) {
+        window.location.href = row.dataset.href;
+    }
+});
+</script>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    document.getElementById("keyword").addEventListener("keyup", function () {
+        let keyword = this.value;
+
+        let xhr = new XMLHttpRequest();
+        xhr.open("GET", "invoice_search.php?keyword=" + encodeURIComponent(keyword), true);
+        xhr.onload = function () {
+            if (xhr.status === 200) {
+                document.getElementById("invoiceTable").innerHTML = xhr.responseText;
+            }
+        };
+        xhr.send();
     });
 });
 </script>

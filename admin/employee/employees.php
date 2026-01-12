@@ -28,7 +28,7 @@ $result = $conn->query($sql);
         .btn-primary { background: var(--primary); color: white; }
 
         /* Bảng Card */
-        .card { background: white; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.05); overflow: hidden; }
+        .card { background: white; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.05); overflow: hidden;margin-top:20px }
         table { width: 100%; border-collapse: collapse; }
         th { background: #fdfdfd; color: #888; font-size: 12px; text-transform: uppercase; padding: 15px 20px; border-bottom: 1px solid #eee; text-align: left; }
         td { padding: 18px 20px; border-bottom: 1px solid #f6f6f6; font-size: 14px; }
@@ -153,14 +153,13 @@ $result = $conn->query($sql);
 </div>
 </div>
 <script>
-document.addEventListener("DOMContentLoaded", () => {
-    const rows = document.querySelectorAll(".clickable-row");
-    rows.forEach(row => {
-        row.addEventListener("click", () => {
-            // Chuyển hướng đến link được lưu trong data-href
-            window.location.href = row.dataset.href;
-        });
-    });
+document.addEventListener("click", function(e) {
+    if (e.target.closest("a")) return;
+
+    const row = e.target.closest(".clickable-row");
+    if (row) {
+        window.location.href = row.dataset.href;
+    }
 });
 </script>
 <script>
