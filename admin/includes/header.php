@@ -14,7 +14,7 @@
         <h2>SHOWROOM<span>99</span></h2>
         <ul>
             <li>
-                <a href="../doashboard/dashboard.php" class="<?= $current_page == 'dashboard.php' ? 'active' : '' ?>">
+                <a href="../dashboard/dashboard.php" class="<?= $current_page == 'dashboard.php' ? 'active' : '' ?>">
                     <i class="fa-solid fa-house"></i> <span>Dashboard</span>
                 </a>
             </li>
@@ -44,7 +44,7 @@
                 </a>
             </li>     
             <li style="margin-top: auto; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 10px;">
-                <a href="logout.php" style="color: #ffb3b3;">
+                <a href="../logout.php" style="color: #ffb3b3;">
                     <i class="fa-solid fa-right-from-bracket"></i> <span>Đăng xuất</span>                   
                 </a>
             </li>
