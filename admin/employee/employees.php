@@ -4,7 +4,7 @@ include '../../config/database.php';
 include '../includes/header.php';
 
 // Lấy danh sách nhân viên
-$sql = "SELECT id, code, full_name, email,dob, phone, position,hire_date, status FROM employees ORDER BY id DESC";
+$sql = "SELECT id, code, full_name, email,dob, phone, position,hire_date, status FROM employees ORDER BY status DESC";
 $result = $conn->query($sql);
 ?>
 <!DOCTYPE html>

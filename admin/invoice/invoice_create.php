@@ -1,7 +1,7 @@
 <?php
 include '../../config/database.php';
 
-// 1. Lấy danh sách sản phẩm để chọn (Kèm theo tồn kho để hiển thị)
+// 1. Lấy danh sách sản phẩm 
 $sql_products = "SELECT p.*, COALESCE(i.quantity, 0) as stock 
                  FROM products p 
                  LEFT JOIN inventory i ON p.id = i.product_id";
@@ -15,25 +15,25 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $cccd      = $_POST['cccd'];
     $phone     = $_POST['phone'];
     $address   = $_POST['address'];
-    $p_ids     = $_POST['product_id']; // Mảng ID sản phẩm
-    $qtys      = $_POST['quantity'];   // Mảng số lượng
+    $p_ids     = $_POST['product_id']; 
+    $qtys      = $_POST['quantity'];   
 
     $conn->begin_transaction();
     try {
-        // BƯỚC A: Tạo khách hàng mới (ID sẽ tự sinh)
+        // Tạo khách hàng mới (ID sẽ tự sinh)
         $stmt_c = $conn->prepare("INSERT INTO customers (full_name, cccd, phone, address) VALUES (?, ?, ?, ?)");
         $stmt_c->bind_param("ssss", $full_name, $cccd, $phone, $address);
         $stmt_c->execute();
         $customer_id = $conn->insert_id; 
 
-        // BƯỚC B: Tạo hoá đơn mới liên kết với khách hàng (ID hoá đơn tự sinh)
+        // Tạo hoá đơn mới liên kết với khách hàng (ID hoá đơn tự sinh)
         $stmt_i = $conn->prepare("INSERT INTO invoices (customer_id, total_amount, status) VALUES (?, 0, 'pending')");
         $stmt_i->bind_param("i", $customer_id);
         $stmt_i->execute();
-        $invoice_id = $conn->insert_id; // ĐÂY LÀ ID MỚI SINH RA
+        $invoice_id = $conn->insert_id; 
 
         $total_bill = 0;
-        // BƯỚC C: Lưu chi tiết các sản phẩm vào invoice_items
+        // Lưu chi tiết các sản phẩm vào invoice_items
         for ($i = 0; $i < count($p_ids); $i++) {
             $pid = intval($p_ids[$i]);
             $qty = intval($qtys[$i]);
@@ -50,12 +50,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $stmt_it->execute();
         }
 
-        // BƯỚC D: Cập nhật lại tổng tiền cuối cùng vào hoá đơn
+        // Cập nhật lại tổng tiền cuối cùng vào hoá đơn
         $conn->query("UPDATE invoices SET total_amount = $total_bill WHERE id = $invoice_id");
         
         $conn->commit();
 
-        // BƯỚC E: CHUYỂN HƯỚNG SANG TRANG CHI TIẾT VỚI ID VỪA SINH
+        // CHUYỂN HƯỚNG SANG TRANG CHI TIẾT VỚI ID VỪA SINH
         header("Location: invoice_detail.php?id=" . $invoice_id);
         exit();
 

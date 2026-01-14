@@ -56,145 +56,38 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <title>Sửa nhân viên</title>
     <style>
         
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        font-family: Arial, sans-serif;
-    }
-    .product-edit-wrapper {
-        padding: 20px;
-        background: #f8fafc;
-        min-height: 100vh;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: Arial, sans-serif; }
 
-    .form-card {
-        background: #ffffff;
-        border-radius: 16px;
-        box-shadow: 0 10px 25px rgba(0,0,0,0.05);
-        border: 1px solid #e2e8f0;
-        max-width: 900px;
-        margin: 0 auto;
-        overflow: hidden;
-    }
+    .product-edit-wrapper { padding: 20px; background: #f8fafc; min-height: 100vh;}
 
-    .form-card-header {
-        padding: 25px 30px;
-        border-bottom: 1px solid #f1f5f9;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
-
-    .form-card-header h2 {
-        font-size: 1.4rem;
-        color: #1e293b;
-        margin: 0;
-    }
+    .form-card { background: #ffffff; border-radius: 16px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); border: 1px solid #e2e8f0;
+    max-width: 900px; margin: 0 auto; overflow: hidden;}
+    .form-card-header { padding: 25px 30px; border-bottom: 1px solid #f1f5f9; display: flex; justify-content: space-between; align-items: center;}
+    .form-card-header h2 { font-size: 1.4rem; color: #1e293b; margin: 0;}
 
     /* Phần hiển thị ảnh cũ */
-    .current-image-preview {
-        margin-bottom: 15px;
-        padding: 10px;
-        border: 1px dashed #cbd5e1;
-        border-radius: 10px;
-        display: inline-block;
-    }
-
-    .current-image-preview img {
-        width: 120px;
-        height: 90px;
-        object-fit: contain;
-        display: block;
-        border-radius: 6px;
-    }
-
-    .current-image-preview span {
-        display: block;
-        font-size: 0.75rem;
-        color: #64748b;
-        margin-top: 5px;
-        text-align: center;
-    }
+    .current-image-preview { margin-bottom: 15px; padding: 10px; border: 1px dashed #cbd5e1; border-radius: 10px; display: inline-block; }
+    .current-image-preview img { width: 120px; height: 90px; object-fit: contain; display: block; border-radius: 6px;}
+    .current-image-preview span { display: block; font-size: 0.75rem; color: #64748b; margin-top: 5px; text-align: center;}
 
     /* Bố cục Form */
-    .admin-form {
-        padding: 30px;
-    }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px;}
+    .form-group { margin-bottom: 20px;}
+    .form-group label { display: block; font-size: 0.85rem; font-weight: 600; color: #64748b; margin-bottom: 8px; text-transform: uppercase}
 
-    .form-row {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 20px;
-        margin-bottom: 20px;
-    }
-
-    .form-group {
-        margin-bottom: 20px;
-    }
-
-    .form-group label {
-        display: block;
-        font-size: 0.85rem;
-        font-weight: 600;
-        color: #64748b;
-        margin-bottom: 8px;
-        text-transform: uppercase;
-    }
-
+    .admin-form { padding: 30px; }
     .admin-form input, 
     .admin-form select, 
-    .admin-form textarea {
-        width: 100%;
-        padding: 12px 16px;
-        border: 1.5px solid #e2e8f0;
-        border-radius: 10px;
-        font-size: 0.95rem;
-        transition: all 0.3s ease;
-    }
-
-    .admin-form input:focus {
-        border-color: #e63946;
-        outline: none;
-        box-shadow: 0 0 0 4px rgba(230, 57, 70, 0.1);
-    }
+    .admin-form textarea { width: 100%; padding: 12px 16px; border: 1.5px solid #e2e8f0; border-radius: 10px; font-size: 0.95rem; transition: all 0.3s ease;}
+    .admin-form input:focus { border-color: #e63946; outline: none; box-shadow: 0 0 0 4px rgba(230, 57, 70, 0.1);}
 
     /* Nút bấm */
-    .form-footer {
-        display: flex;
-        justify-content: flex-end;
-        gap: 12px;
-        padding: 20px 30px;
-        background: #fcfcfd;
-        border-top: 1px solid #f1f5f9;
-    }
-
-    .btn {
-        padding: 12px 24px;
-        border-radius: 10px;
-        font-weight: 600;
-        cursor: pointer;
-        border: none;
-        text-decoration: none;
-        font-size: 0.9rem;
-    }
-
-    .btn-update {
-        background: #2563eb;
-        color: #fff;
-    }
-
-    .btn-update:hover {
-        background: #1d4ed8;
-    }
-
-    .btn-cancel {
-        background: #e63946;
-        color: #fff;
-    }
-    .btn-cancel:hover {
-        background: #d62828;
-    }
+    .form-footer { display: flex; justify-content: flex-end; gap: 12px; padding: 20px 30px; background: #fcfcfd; border-top: 1px solid #f1f5f9;}
+    .btn { padding: 12px 24px; border-radius: 10px; font-weight: 600; cursor: pointer; border: none; text-decoration: none; font-size: 0.9rem; }
+    .btn-update { background: #2563eb; color: #fff;}
+    .btn-update:hover { background: #1d4ed8;}
+    .btn-cancel { background: #e63946; color: #fff;}
+    .btn-cancel:hover { background: #d62828;}
     </style>
 </head>
 <body>

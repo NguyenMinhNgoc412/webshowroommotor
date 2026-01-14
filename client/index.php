@@ -467,7 +467,7 @@ function sendMessage(){
     input.value="";
     messages.scrollTop = messages.scrollHeight;
 
-    fetch("gemini_motor.php",{
+    fetch("chatbot.php",{
         method:"POST",
         headers:{"Content-Type":"application/x-www-form-urlencoded"},
         body:"message="+encodeURIComponent(msg)

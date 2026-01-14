@@ -7,7 +7,8 @@ $keyword = $_GET['keyword'] ?? '';
 $sql = "SELECT * FROM employees 
         WHERE code LIKE ? 
         OR full_name LIKE ? 
-        OR position LIKE ?";
+        OR position LIKE ?
+        ORDER BY status DESC";
 
 $stmt = $conn->prepare($sql);
 $search = "%$keyword%";
