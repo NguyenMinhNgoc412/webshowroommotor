@@ -1,0 +1,119 @@
+/* ===== RESET & BASE ===== */
+body {
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: #eef2f7;
+    padding: 20px;
+    color: #1f2937;
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 25px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+/* ===== BOARD ===== */
+.board {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+}
+
+/* ===== COLUMN ===== */
+.column {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 16px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+}
+
+.column h3 {
+    text-align: center;
+    margin-bottom: 16px;
+    padding: 12px;
+    color: #fff;
+    border-radius: 8px;
+    font-size: 15px;
+    letter-spacing: 0.5px;
+}
+
+/* MÀU TRẠNG THÁI */
+.col-new h3 {
+    background: linear-gradient(135deg, #ef4444, #dc2626);
+}
+.col-contacted h3 {
+    background: linear-gradient(135deg, #f59e0b, #d97706);
+}
+.col-done h3 {
+    background: linear-gradient(135deg, #22c55e, #16a34a);
+}
+
+/* ===== CARD ===== */
+.card {
+    background: #f9fafb;
+    border-radius: 10px;
+    padding: 12px 14px;
+    margin-bottom: 14px;
+    border-left: 5px solid transparent;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    transition: all 0.25s ease;
+}
+
+.col-new .card { border-left-color: #ef4444; }
+.col-contacted .card { border-left-color: #f59e0b; }
+.col-done .card { border-left-color: #22c55e; }
+
+.card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 24px rgba(0,0,0,0.12);
+}
+
+/* TEXT */
+.card b {
+    font-size: 14px;
+    margin-bottom: 4px;
+}
+
+.card small {
+    display: block;
+    margin-top: 6px;
+    color: #6b7280;
+    font-size: 12px;
+}
+
+/* ===== BUTTON ===== */
+.card button {
+    margin-top: 10px;
+    padding: 7px 12px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 600;
+    transition: 0.2s;
+}
+
+/* BUTTON STATE */
+.btn-next {
+    background: #2563eb;
+    color: #fff;
+}
+.btn-next:hover {
+    background: #1e40af;
+}
+
+.btn-done {
+    background: #16a34a;
+    color: #fff;
+}
+.btn-done:hover {
+    background: #166534;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 1100px) {
+    .board {
+        grid-template-columns: 1fr;
+    }
+}
